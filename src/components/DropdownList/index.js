@@ -4,7 +4,7 @@ export default function DropdownList(props) {
   return (
     <div className="dropdown-list">
       <label>{props.label}</label>
-      <select>
+      <select onChange={evt => props.changed(evt.target.value)} required={props.required} value={props.value}>
         {props.itens.map(item => (
           <option key={item}>{item}</option>
         ))}
