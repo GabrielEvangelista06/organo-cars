@@ -4,7 +4,7 @@ import DropdownList from '../DropdownList';
 import FullInput from '../FullInput';
 import './Form.css';
 
-export default function Form() {
+export default function Form(props) {
   const brands = [
     'Aston Martin',
     'Audi',
@@ -45,7 +45,12 @@ export default function Form() {
   const toSave = evt => {
     evt.preventDefault();
 
-    console.log('Form foi submetido', brand);
+    props.registeredVehicle({
+      brand,
+      model,
+      releaseData,
+      imageUrl,
+    });
   };
 
   const [brand, setBrand] = useState('');
