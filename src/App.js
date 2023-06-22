@@ -4,7 +4,7 @@ import Brand from './components/Brand';
 import Form from './components/Form';
 
 function App() {
-  const [vehicles, setVehicles] = useState([]);
+  const [cars, setCars] = useState([]);
 
   const brands = [
     { name: 'Aston Martin', firstColor: '#2a6e78', secondColor: '#7a907c' },
@@ -34,7 +34,7 @@ function App() {
   ];
 
   const newVehicle = vehicle => {
-    setVehicles([...vehicles, vehicle]);
+    setCars([...cars, vehicle]);
   };
 
   return (
@@ -42,7 +42,13 @@ function App() {
       <Banner />
       <Form brandName={brands.map(brand => brand.name)} registeredVehicle={vehicle => newVehicle(vehicle)} />
       {brands.map(brand => (
-        <Brand key={brand.name} name={brand.name} firstColor={brand.firstColor} secondColor={brand.secondColor} />
+        <Brand
+          key={brand.name}
+          name={brand.name}
+          firstColor={brand.firstColor}
+          secondColor={brand.secondColor}
+          cars={cars.filter(car => car.brand === brand.name)}
+        />
       ))}
     </div>
   );

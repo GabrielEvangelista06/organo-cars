@@ -11,14 +11,14 @@ export default function Form(props) {
     props.registeredVehicle({
       brand,
       model,
-      releaseData,
+      releaseDate,
       imageUrl,
     });
   };
 
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
-  const [releaseData, setRealeaseDae] = useState('');
+  const [releaseDate, setRealeaseDate] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
   return (
@@ -37,8 +37,8 @@ export default function Form(props) {
           required={true}
           label="Ano do veículo"
           placeholder="Informe o ano de lançamento do veículo"
-          value={releaseData}
-          changed={value => setRealeaseDae(value)}
+          value={releaseDate}
+          changed={value => setRealeaseDate(value)}
         />
         <FullInput
           required={true}
