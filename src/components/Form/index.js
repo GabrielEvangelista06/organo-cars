@@ -14,6 +14,11 @@ export default function Form(props) {
       releaseDate,
       imageUrl,
     });
+
+    setBrand('');
+    setModel('');
+    setRealeaseDate('');
+    setImageUrl('');
   };
 
   const [brand, setBrand] = useState('');
