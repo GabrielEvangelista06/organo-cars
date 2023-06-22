@@ -1,0 +1,11 @@
+.brand {
+  text-align: center;
+  padding: 32px;
+}
+
+.brand h3 {
+  border-bottom: 4px solid;
+  display: inline-block;
+  font-size: 32px;
+  padding-bottom: 8px;
+}

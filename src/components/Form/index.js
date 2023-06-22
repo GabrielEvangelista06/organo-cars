@@ -5,43 +5,6 @@ import FullInput from '../FullInput';
 import './Form.css';
 
 export default function Form(props) {
-  const brands = [
-    'Aston Martin',
-    'Audi',
-    'BMW',
-    'CAOA Chery',
-    'Chevrolet',
-    'Citroën',
-    'Ferrari',
-    'Fiat',
-    'Ford',
-    'Honda',
-    'Hyundai',
-    'Jaguar',
-    'Jeep',
-    'Kia',
-    'Lamborghini',
-    'Land Rover',
-    'Lexus',
-    'Maserati',
-    'McLaren',
-    'Mercedes-AMG',
-    'Mercedes-Benz',
-    'Mini',
-    'Mitsubishi',
-    ' Nissan',
-    'Peugeot',
-    'Porsche',
-    'RAM',
-    'Renault',
-    'Rolls-Royce',
-    'Subaru',
-    'Suzuki',
-    'Toyota',
-    'Volkswagen',
-    'Volvo',
-  ];
-
   const toSave = evt => {
     evt.preventDefault();
 
@@ -62,7 +25,7 @@ export default function Form(props) {
     <section className="form">
       <form onSubmit={toSave}>
         <h2>Preencha os dados para criar o card do carro</h2>
-        <DropdownList required={true} label="Marca" itens={brands} value={brand} changed={value => setBrand(value)} />
+        <DropdownList required={true} label="Marca" itens={props.brandName} value={brand} changed={value => setBrand(value)} />
         <FullInput
           required={true}
           label="Modelo"
