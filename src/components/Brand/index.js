@@ -11,7 +11,14 @@ export default function Brand(props) {
         <h3 style={borderColor}>{props.name}</h3>
         <div className="cars">
           {props.cars.map(car => (
-            <Car key={car.model} model={car.model} brand={car.brand} imageUrl={car.imageUrl} releaseDate={car.releaseDate} />
+            <Car
+              key={car.model}
+              backgroundColor={props.firstColor}
+              model={car.model}
+              brand={car.brand}
+              imageUrl={car.imageUrl}
+              releaseDate={car.releaseDate}
+            />
           ))}
         </div>
       </section>

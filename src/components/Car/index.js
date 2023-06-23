@@ -1,9 +1,9 @@
 import './Car.css';
 
-export default function Car({ brand, model, releaseDate, imageUrl }) {
+export default function Car({ brand, model, releaseDate, imageUrl, backgroundColor }) {
   return (
     <div className="car">
-      <div className="header">
+      <div className="header" style={{ backgroundColor }}>
         <img src={imageUrl} alt={model} />
       </div>
       <div className="footer">
