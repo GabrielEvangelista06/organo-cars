@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Banner from './components/Banner';
 import Brand from './components/Brand';
+import Footer from './components/Footer';
 import Form from './components/Form';
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           cars={cars.filter(car => car.brand === brand.name)}
         />
       ))}
+      <Footer />
     </div>
   );
 }
