@@ -2,7 +2,13 @@ import hexToRgba from 'hex-to-rgba';
 import Car from '../Car';
 import './Brand.css';
 
-export default function Brand({ brand, cars, onDelete, changeColor }) {
+export default function Brand({
+  brand,
+  cars,
+  onDelete,
+  changeColor,
+  onFavorite,
+}) {
   const bgColor = { backgroundColor: hexToRgba(brand.color, '0.6') };
 
   return (
@@ -17,7 +23,13 @@ export default function Brand({ brand, cars, onDelete, changeColor }) {
         <h3 style={{ borderColor: brand.color }}>{brand.name}</h3>
         <div className="cars">
           {cars.map((car, index) => (
-            <Car key={index} car={car} backgroundColor={brand.color} onDelete={onDelete} />
+            <Car
+              key={index}
+              car={car}
+              backgroundColor={brand.color}
+              onDelete={onDelete}
+              onFavorite={onFavorite}
+            />
           ))}
         </div>
       </section>

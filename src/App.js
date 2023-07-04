@@ -38,7 +38,9 @@ function App() {
       id: uuidv4(),
       model: 'Aston Martin DB12',
       releaseDate: '2023',
-      imageUrl: 'https://www.automaistv.com.br/wp-content/uploads/2023/05/aston_martin_db12_12_edited-990x594.jpg',
+      imageUrl:
+        'https://www.automaistv.com.br/wp-content/uploads/2023/05/aston_martin_db12_12_edited-990x594.jpg',
+      favorite: false,
       brand: brands[0].name,
     },
   ];
@@ -68,6 +70,17 @@ function App() {
     setBrands([...brands, { ...newBrand, id: uuidv4() }]);
   }
 
+  function toFavorite(id) {
+    setCars(
+      cars.map(car => {
+        if (car.id === id) {
+          car.favorite = !car.favorite;
+        }
+        return car;
+      }),
+    );
+  }
+
   return (
     <div className="App">
       <Banner />
@@ -83,6 +96,7 @@ function App() {
           cars={cars.filter(car => car.brand === brand.name)}
           onDelete={deleteCar}
           changeColor={changeBrandColor}
+          onFavorite={toFavorite}
         />
       ))}
       <Footer />
