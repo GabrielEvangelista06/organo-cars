@@ -1,54 +1,81 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Banner from './components/Banner';
 import Brand from './components/Brand';
 import Footer from './components/Footer';
 import Form from './components/Form';
 
 function App() {
-  const [cars, setCars] = useState([]);
+  const [brands, setBrands] = useState([
+    { id: uuidv4(), name: 'Aston Martin', color: '#2a6e78' },
+    { id: uuidv4(), name: 'BMW', color: '#027fe9' },
+    { id: uuidv4(), name: 'CAOA Chery', color: '#ff2121' },
+    { id: uuidv4(), name: 'Chevrolet', color: '#e8e490' },
+    { id: uuidv4(), name: 'Ferrari', color: '#ff0000' },
+    { id: uuidv4(), name: 'Fiat', color: '#ba1e4a' },
+    { id: uuidv4(), name: 'Ford', color: '#1b66ff' },
+    { id: uuidv4(), name: 'Honda', color: '#a8a7a7' },
+    { id: uuidv4(), name: 'Hyundai', color: '#027fe9' },
+    { id: uuidv4(), name: 'Jaguar', color: '#a1a1a1' },
+    { id: uuidv4(), name: 'Jeep', color: '#000000' },
+    { id: uuidv4(), name: 'Lamborghini', color: '#222222' },
+    { id: uuidv4(), name: 'Land Rover', color: '#408156' },
+    { id: uuidv4(), name: 'Maserati', color: '#363636' },
+    { id: uuidv4(), name: 'McLaren', color: '#474747' },
+    { id: uuidv4(), name: 'Mercedes-Benz', color: '#ff2121' },
+    { id: uuidv4(), name: 'Mitsubishi', color: '#000000' },
+    { id: uuidv4(), name: 'Nissan', color: '#ff2121' },
+    { id: uuidv4(), name: 'Porsche', color: '#0d0c0c' },
+    { id: uuidv4(), name: 'RAM', color: '#000000' },
+    { id: uuidv4(), name: 'Rolls-Royce', color: '#ab9597' },
+    { id: uuidv4(), name: 'Toyota', color: '#363636' },
+    { id: uuidv4(), name: 'Volkswagen', color: '#013750' },
+    { id: uuidv4(), name: 'Volvo', color: '#0d0d0d' },
+  ]);
 
-  const brands = [
-    { name: 'Aston Martin', firstColor: '#2a6e78', secondColor: '#7a907c' },
-    { name: 'BMW', firstColor: '#027fe9', secondColor: '#00caf8' },
-    { name: 'CAOA Chery', firstColor: '#ff2121', secondColor: '#a8a7a7' },
-    { name: 'Chevrolet', firstColor: '#e8e490', secondColor: '#a1a1a1' },
-    { name: 'Ferrari', firstColor: '#ff0000', secondColor: '#ffff00' },
-    { name: 'Fiat', firstColor: '#ba1e4a', secondColor: '#a8a7a7' },
-    { name: 'Ford', firstColor: '#1b66ff', secondColor: '#00cef5' },
-    { name: 'Honda', firstColor: '#a8a7a7', secondColor: '#ff2121' },
-    { name: 'Hyundai', firstColor: '#027fe9', secondColor: '#a8a7a7' },
-    { name: 'Jaguar', firstColor: '#a1a1a1', secondColor: '#f3c363' },
-    { name: 'Jeep', firstColor: '#000000', secondColor: '#a8a7a7' },
-    { name: 'Lamborghini', firstColor: '#222222', secondColor: '#f7fd91' },
-    { name: 'Land Rover', firstColor: '#408156', secondColor: '#1f5f61' },
-    { name: 'Maserati', firstColor: '#363636', secondColor: '#1b66ff' },
-    { name: 'McLaren', firstColor: '#474747', secondColor: '#fc913a' },
-    { name: 'Mercedes-Benz', firstColor: '#ff2121', secondColor: '#a8a7a7' },
-    { name: 'Mitsubishi', firstColor: '#000000', secondColor: '#ff2121' },
-    { name: 'Nissan', firstColor: '#ff2121', secondColor: '#363636' },
-    { name: 'Porsche', firstColor: '#0d0c0c', secondColor: '#e6ac27' },
-    { name: 'RAM', firstColor: '#000000', secondColor: '#252326' },
-    { name: 'Rolls-Royce', firstColor: '#ab9597', secondColor: '#ffffff' },
-    { name: 'Toyota', firstColor: '#363636', secondColor: '#790614' },
-    { name: 'Volkswagen', firstColor: '#013750', secondColor: '#ffffff' },
-    { name: 'Volvo', firstColor: '#0d0d0d', secondColor: '#f0f0f0' },
+  const initial = [
+    {
+      id: uuidv4(),
+      model: 'Aston Martin DB12',
+      releaseDate: '2023',
+      imageUrl: 'https://www.automaistv.com.br/wp-content/uploads/2023/05/aston_martin_db12_12_edited-990x594.jpg',
+      brand: brands[0].name,
+    },
   ];
 
-  const newVehicle = vehicle => {
-    setCars([...cars, vehicle]);
+  const [cars, setCars] = useState(initial);
+
+  const newCar = car => {
+    setCars([...cars, car]);
   };
+
+  function deleteCar(id) {
+    console.log(id);
+    setCars(cars.filter(car => car.id !== id));
+  }
+
+  function changeBrandColor(color, id) {
+    setBrands(
+      brands.map(brand => {
+        if (brand.id === id) {
+          brand.color = color;
+        }
+        return brand;
+      }),
+    );
+  }
 
   return (
     <div className="App">
       <Banner />
-      <Form brandName={brands.map(brand => brand.name)} registeredVehicle={vehicle => newVehicle(vehicle)} />
-      {brands.map(brand => (
+      <Form brandName={brands.map(brand => brand.name)} registeredVehicle={vehicle => newCar(vehicle)} />
+      {brands.map((brand, index) => (
         <Brand
-          key={brand.name}
-          name={brand.name}
-          firstColor={brand.firstColor}
-          secondColor={brand.secondColor}
+          brand={brand}
+          key={index}
           cars={cars.filter(car => car.brand === brand.name)}
+          onDelete={deleteCar}
+          changeColor={changeBrandColor}
         />
       ))}
       <Footer />
