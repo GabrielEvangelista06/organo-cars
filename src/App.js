@@ -50,7 +50,6 @@ function App() {
   };
 
   function deleteCar(id) {
-    console.log(id);
     setCars(cars.filter(car => car.id !== id));
   }
 
@@ -65,10 +64,18 @@ function App() {
     );
   }
 
+  function registerBrand(newBrand) {
+    setBrands([...brands, { ...newBrand, id: uuidv4() }]);
+  }
+
   return (
     <div className="App">
       <Banner />
-      <Form brandName={brands.map(brand => brand.name)} registeredVehicle={vehicle => newCar(vehicle)} />
+      <Form
+        nameBrand={brands.map(brand => brand.name)}
+        registeredVehicle={vehicle => newCar(vehicle)}
+        registerBrand={registerBrand}
+      />
       {brands.map((brand, index) => (
         <Brand
           brand={brand}
